@@ -1,0 +1,31 @@
+A l'aide d'une session (kali) possédant un programe permettant de lire un .pcap (exemple : wireshark)
+récupérer le .pcap grâce à la commande scp
+
+scp -P 4242 level02@10.12.1.122:/home/user/level02/level02.pcap ~
+mp : f2av5il02puano7naaf6adaaf
+-P 4242 : indique le port a utilise (defaut 22)
+level02@10.12.1.122 : session
+/home/user/level02/level02.pcap : fichier a télécharger
+~ : dossier de destination de la copy
+
+chmod pour pouvoir le lire
+lire avec wireshark
+
+Qu'est ce qu'un .pcap ?
+c'est un fichier résumant les logs (ou échange de donné) entre plusieurs correspondant.
+Chaque échange possédant plusieurs information (nom du destinataire, port, ect)
+Ici, les derniers information sont des caractère constituant de bout en bout le mot de passe 
+(a partir du moment ou ils transport des bytes)
+ainsi en commençant avec le package numéro 45 et en suivant les package de la source 59.233.235.223
+
+on obtient :
+f t _ W a n d r '7F' '7F' '7F' N D R e '6c' '7F' L O L 'Od' '000d0a'
+7F = . en valeur octal (parce que bytes) ça donne 177 soit la valeur DEL qui ne veut rien dire (à virer ?)
+6c = (octal -> 154 = l)
+0d = 
+le dernier étant en 3 bytes, je peux suposé que c'est la touche entré
+
+donc
+ft_Wandr...NDRelL0L
+del signifie effacé donc...
+ft_waNDReL0L

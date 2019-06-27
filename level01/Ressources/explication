@@ -1,0 +1,17 @@
+sencé être aussi "dure" que le levl00
+
+man su indique un possible fichier passwd
+/etc/passwd
+
+à l'intérieur on trouve cette ligne.
+flag01:42hDRfypTqqnw:3001:3001::/home/flag/flag01:/bin/bash
+
+le mot de passe est actuellement crypté sous la forme 42hDRfypTqqnw
+
+EN REPRENENANT UN INDICE A LA CON DE L'EXERCICE PRECEDANT
+à savoir john
+(et en ayant la connaissance nécessaire pour connaître john the reaper)
+En utilisant john, on obtient un cryptage de type DES 128/128
+ce qui correspond à abcdefg -> 42hDRfypTqqnw
+on obtient le flag
+su flag01
