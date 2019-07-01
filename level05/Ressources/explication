@@ -1,1 +1,13 @@
-find / -user "flag05" 2>/dev/null
+find / -user "flag05" 2>/dev/null  #spoiler : non
+
+
+en se connectant directement (virtualbox, ect)
+le message "you have a new mail" s'affiche.
+
+
+gdb (executif)
+disass (fct name, générallement main)
+run
+break
+step(i)
+q = quitter

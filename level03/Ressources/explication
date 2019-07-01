@@ -1,0 +1,24 @@
+une fois connecté au level03
+mp : kooda2puivaav1idi4f57q8iq
+
+nous découvrons un executif
+un cat (ou plutot un strings) et on remarque ceci :
+/usr/bin/env echo Exploit me;
+
+si on l'execute on obtient "Exploit me"
+Et enfin si on ls- l pour regarder les droit, 
+on remarque que flag03 peut l'utilisé
+Donc,si on fait en sorte que echo = getflag
+on obitiendra le flag
+
+étape 1 localisé le getfla
+whereis getflag
+etape 2
+trouver un dossier dans lequel on peut écrire
+tmp
+etape 3
+cp getflag dans tmp et le renommé echo
+etape 4
+export PATH=/tmp:$PATH
+etape 5
+executer ./level03
