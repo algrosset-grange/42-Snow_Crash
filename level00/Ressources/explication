@@ -1,1 +1,11 @@
+Comme l'indique la vidéo (laquelle nous rroll en disant qu'on devrait trouver un readme)
+Il faut trouver l'utilisateur, en d'autre terme un fichier 
+
 find / -user "flag00" 2>/dev/null
+
+de là on obtient 2 fichier "josh"  contenant la string
+cdiiddwpgswtgt
+Si on passe ça dans un décrypteur césar avec un décalage de 15 onobtient 
+nottoohardhere
+ce qui nous donne le mot de passe pour flags00
+et avec su, puis un getflags, on obtient le flag final.

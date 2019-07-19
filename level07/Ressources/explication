@@ -16,7 +16,14 @@ en lisant le man sur les deux fonction, on peut remarque qu'elle appelle toutes 
 p (char *) 0x8048688 
 $4 = 0x8048688 "/bin/echo %s "
 
-(gdb) p (char *) 0x8048680
+gdb (executif)
+disass (fct name, générallement main)
+run
+break
+step(i)
+q = quitter
+
+p (char *) 0x8048680
 $3 = 0x8048680 "LOGNAME"
 
 on a donc une une fonction asprintf qui fait " /bin/echo `getenv(LOGNAME)`"

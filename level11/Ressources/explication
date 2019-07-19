@@ -1,0 +1,34 @@
+ici nous avons un .lua
+un cat nous révèle quelques informations
+
+local server = assert(socket.bind("127.0.0.1", 5151))
+
+cette ligne indique qu'il intéragie avecle port 5151
+
+function hash(pass)
+  prog = io.popen("echo "..pass.." | sha1sum", "r")
+..
+..
+..
+end
+
+nous avons une fonction laquelle utilise une variable pass evec un echo
+une injection pourrait donc marcher ici.
+
+while 1 do
+..
+..
+on a une boucle ici
+
+client:send("Password: ")
+laquelle écrit "Password: "
+
+local l, err = client:receive()
+puis attend une variable, la mettant dans l ou err (en cas d'erreur)
+
+local h = hash(l)
+cette variable l est ensuite utilisé pour la foncton hash.
+
+On peut donc faire une injection a partir de Password
+quelque comme " ; getflag > /tmp/flag "
+marche et permet ensuite de consutler /tmp/flag pour obtenir le flag.

@@ -9,7 +9,7 @@ si on l'execute on obtient "Exploit me"
 Et enfin si on ls- l pour regarder les droit, 
 on remarque que flag03 peut l'utilisé
 Donc,si on fait en sorte que echo = getflag
-on obitiendra le flag
+on obtiendra le flag
 
 étape 1 localisé le getfla
 whereis getflag

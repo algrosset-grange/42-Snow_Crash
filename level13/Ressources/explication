@@ -1,0 +1,31 @@
+nous avons un executif, level13
+on ne peut l'utilisé actuellement
+un gdb dissa main nous présent l'utilisation de getuid et s'attend à ce qu'il retourne 4242
+
+On peut réussir à tromper le programme en lui faisant lire NOTRE getuid, lequel enverra toujours 4242
+
+pour cela dans /tmp
+on créer la fonction getuid()
+
+int getuid()
+{
+	return(4242);
+}
+
+une recherche internet (chrome "getuid env") 
+nous apprends que getuid est enregistrer dans la variable d'environnement
+LD_PRELOAD
+on peut donc gérer un export
+
+il faut d'abord créer le .so qui nous convient
+on constate que LD_PRELOAD a besoin de lib.so
+donc on donne le nom a notre nouvelle bibliothèque logiciel.
+gcc -shared -o lib.so mygetuid.c
+
+on export 
+export LD_PRELOAD=/tmp/lib.so:
+
+Cela ne semble pas suffire. Mais via un débuggeur,
+lequel isole toutes fonctions normalllement importe par l'exécutif, on obtient le code
+gdb ~/level13
+run

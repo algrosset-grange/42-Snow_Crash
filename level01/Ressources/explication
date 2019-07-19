@@ -11,7 +11,11 @@ le mot de passe est actuellement crypté sous la forme 42hDRfypTqqnw
 EN REPRENENANT UN INDICE A LA CON DE L'EXERCICE PRECEDANT
 à savoir john
 (et en ayant la connaissance nécessaire pour connaître john the reaper)
+(heureusement, le storage kali, propose un john the reaper déjà installé
+/sgoinfre/goinfre/ISO/kali-linux-2019.1/kali-linux-2019.1a-amd64.iso )
 En utilisant john, on obtient un cryptage de type DES 128/128
 ce qui correspond à abcdefg -> 42hDRfypTqqnw
 on obtient le flag
 su flag01
+abcdefg
+gettoken

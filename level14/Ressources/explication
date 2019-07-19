@@ -1,0 +1,63 @@
+Rien pour cette exercice ? pas de file ? Pas de résultat au find ?
+Well... après du hack de echo et de getuid... autant hacker getflag lui-même
+Déjà mettons nous dans un environnement plus intéressant, à savoir dans un user flagXX
+et vu que le mp de flag00 est facile à retenir...
+
+bref, nous voicidans un environnement de travail, 
+on copie /bin/get/flag et on le met dans un lieu plus propice : /tmp
+et maintenant on peut le lire en langage assembleur avec 
+
+objdump -d /the_path/getflag
+
+A coup de vim, vs, des ctrl + f plus tard et on remarque une série de répétion dans le main.
+plus précisément 15 fois les mêmes commandes quasiment identique comme celle-ci :
+
+8048bf3:	a1 60 b0 04 08       	mov    0x804b060,%eax
+8048bf8:	89 c3                	mov    %eax,%ebx
+8048bfa:	c7 04 24 b2 90 04 08 	movl   $0x80490b2,(%esp)
+8048c01:	e8 fe f9 ff ff       	call   8048604 <ft_des>
+8048c06:	89 5c 24 04          	mov    %ebx,0x4(%esp)
+8048c0a:	89 04 24             	mov    %eax,(%esp)
+8048c0d:	e8 1e f9 ff ff       	call   8048530 <fputs@plt>
+8048c12:	e9 18 02 00 00       	jmp    8048e2f <main+0x4e9>
+
+***
+dernière iteration : 
+
+ 8048de5:	a1 60 b0 04 08       	mov    0x804b060,%eax
+ 8048dea:	89 c3                	mov    %eax,%ebx
+ 8048dec:	c7 04 24 20 92 04 08 	movl   $0x8049220,(%esp)
+ 8048df3:	e8 0c f8 ff ff       	call   8048604 <ft_des>
+ 8048df8:	89 5c 24 04          	mov    %ebx,0x4(%esp)
+ 8048dfc:	89 04 24             	mov    %eax,(%esp)
+ 8048dff:	e8 2c f7 ff ff       	call   8048530 <fputs@plt>
+ 8048e04:	eb 29                	jmp    8048e2f <main+0x4e9>
+
+si on regarde un peux plus haut et (control + f "8048bf3")
+on constate que cette portion de l'assembleur est appeler un peu plus haut
+
+
+ 8048b2e:	3d b8 0b 00 00       	cmp    $0xbb8,%eax
+ 8048b33:	0f 84 ba 00 00 00    	je     8048bf3 <main+0x2ad>
+
+*********
+
+ 8048bb6:	3d c6 0b 00 00       	cmp    $0xbc6,%eax
+ 8048bbb:	0f 84 24 02 00 00    	je     8048de5 <main+0x49f>
+
+8048e2f correspond à une partie du code assembleur un peu plus bas.
+Dès lors la solution la plus simple semble être sous la forme de 2 options :
+Dans les compare, changer la valeur 8048bf3 par 8048de5
+(donc "ba 00" par "24 02")
+ou alors modifier les valeurs pour l'opération movl 
+
+Pour ce faire un passage dans vim, ouvrir le programme, 
+le passer en hexadecimal grace a la commande :%!xxd
+rechercher le passage (lequel sont groupé en duo,
+donc par exemple "84 24" peut être trouver soit par /8424
+soit sous cette forme /0f84 ou /2402)
+
+faite la modifiaction nécessaire 
+(ma première proposition na pas marcher, je em suis donc rabatue sur la deuxième)
+repasser le code en binaire :%!xxd -r
+sauvergarder, executer et c'est récupérer.

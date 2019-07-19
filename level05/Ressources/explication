@@ -32,12 +32,3 @@ Check flag.Here is your token : viuaaale9huek52boumoomioc
 
 ajout:
 Au final, ça utilise cron, un daemon qui execute un script à une heure donnée.
-
-
-
-gdb (executif)
-disass (fct name, générallement main)
-run
-break
-step(i)
-q = quitter
